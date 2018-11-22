@@ -1,0 +1,29 @@
+version: '2'
+services:
+#  nginx:
+#      build: ./env/nginx
+#      networks:
+#        - m2dev
+#      volumes_from:
+#        - npm
+#      depends_on:
+#        - npm
+#      ports:
+#        - 81:3000
+  npm:
+    build: .
+#    command: npm start
+    volumes:
+      - .:/var/www/src/
+      - /var/www/src/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://todoapp@postgres/todos
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: todoapp
+      POSTGRES_DB: todos
