@@ -60,5 +60,58 @@ typings/
 # next.js build output
 .next
 
-# IDE
-.idea
+# Unwanted Files
+
+.env
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.log
+*.sql
+*.sqlite
+error_log
+adminer.php
+
+# IDE files
+
+.idea/
+*.sublime-workspace
+*.iws
+nbproject/
+data/
+env/nginx/webserver/conf.d/default.conf
+env/nginx/ssl
+env/nginx/certs
+env/nginx/share
+env/nginx/webserver/vhost.d
+
+# OSX
+
+._*
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Windows
+
+Thumbs.db
+ehthumbs.db
+
+# Keep files
+
+!src/.htaccess
+!src/.modman

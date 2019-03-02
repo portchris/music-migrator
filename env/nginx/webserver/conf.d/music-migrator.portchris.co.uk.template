@@ -1,0 +1,19 @@
+server {
+
+    listen 8081;
+    listen [::]:8081;
+    
+	server_name music-migrator.portchris.co.uk;
+
+	set $MAGE_ROOT /home/www/src;
+	set $code default;
+	
+	root $MAGE_ROOT;
+	index index.js;
+
+	include /etc/nginx/defaults/nodejs.conf;
+
+	location / {
+		try_files $uri $uri/ /index.js$is_args$args;
+	}
+}
