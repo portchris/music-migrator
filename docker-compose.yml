@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.7'
 
 services:
   
@@ -6,18 +6,18 @@ services:
     container_name: mmnginx
     build: ./env/nginx
     ports:
-      - 8081:8081
+      - 8082:8082
     expose:
       - 80
       - 443
     env_file:
       - ./env/nginx/.env
     depends_on:
-      - mmnodejs
+      - mmapp
     tty: true
     volumes:
-      - ./src:/home/www/naturalremedy/src
-      - ./storage:/home/www/storage/naturalremedy
+      - ./src:/home/www/music-migrator/src
+      - ./storage:/home/www/storage/music-migrator
       - ./data/nginx/logs:/var/log/nginx
       - ./env/nginx/webserver/nginx.conf:/etc/nginx/nginx.conf
       - ./env/nginx/webserver/conf.d:/etc/nginx/conf.d
@@ -27,7 +27,7 @@ services:
 
   mmpostgres:
     build: ./env/postgres
-    container_name: postgres
+    container_name: mmpostgres
     env_file: env/postgres/.env
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
@@ -35,20 +35,24 @@ services:
     ports:
       - 5432:5432
 
-  mmnodejs:
-    build: ./env/nodejs
-    container_name: nodejs
-    env_file: env/nodejs/.env
+  mmapp:
+    build: ./env/app
+    # command: app manage.py runserver 0.0.0.0:8082
+    container_name: mmapp
+    env_file: env/app/.env
     environment:
       - PORT=80
       - NODE_ENV=production
     # restart: always
     volumes:
-      - ./src:/home/www/src:delegated
+      - ./src:/home/www/music-migrator/src:delegated
       - ./env:/var/env:delegated
     tty: true
     ports:
       - 3000:3000
+      - 8000:8000
+    depends_on:
+      - mmpostgres
 
 networks:
   default:

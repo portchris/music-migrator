@@ -34,11 +34,43 @@ RUN apt-get update && \
         wget \
 		vim \
 		procps \
-		cron
+		cron \ 
+        build-essential \
+        zlib1g-dev \ 
+        libncurses5-dev \ 
+        libgdbm-dev \ 
+        libnss3-dev \ 
+        libssl-dev \ 
+        libreadline-dev \
+        libffi-dev
 
-# Add scripts
-ADD ./scripts /scripts
-RUN chmod +x -R /scripts
+# Install Python v3.8
+RUN curl -O https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tar.xz && \
+    tar -xf Python-3.8.2.tar.xz && \
+    cd Python-3.8.2 && \
+    ./configure --enable-optimizations && \
+    make -j 4 && \
+    make altinstall && \
+    python3.8 --version && \
+    apt update -y && \
+    apt install -y python3-pip && \
+    update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
+
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# set work directory
+WORKDIR /home/www/music-migrator/src
+
+# Install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt /home/www/music-migrator/src/api/requirements.txt
+RUN pip install -r /home/www/music-migrator/src/api/requirements.txt
+
+# Copy Python project
+# COPY . /home/www/music-migrator/src/api/
 
 # Install NPM & Node.Js
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
@@ -54,7 +86,8 @@ ADD ./config/index-before.js /home/www/index-before.js
 # ADD ./config/cron /etc/cron.d
 # RUN chmod 0644 -R /etc/cron.d/
 
-EXPOSE 3000
+# Runtime scripts
+ADD ./scripts /scripts
+RUN chmod +x -R /scripts
 
-# Run supervisor to start all services
-# CMD ["/bin/bash", "/scripts/start.sh"]
+EXPOSE 3000 8000

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-if [ -f ./env/nodejs/.env ]; then
-	source ./env/nodejs/.env
+if [ -f ./env/app/.env ]; then
+	source ./env/app/.env
 else 
-	echo "Error: no/env/nodejs/.env found!"
+	echo "Error: no/env/app/.env found!"
 fi
 
 if [ -z ${USER_ID+x} ]; then

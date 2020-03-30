@@ -1,7 +1,7 @@
 # Any extra start up scripts here to run on container instantiation
 #!/bin/bash
 
-CONF="/etc/nginx/conf.d/naturalremedy.co.uk.template"
+CONF="/etc/nginx/conf.d/music-migrator.co.uk.template"
 CONF_DEFAULT="/etc/nginx/conf.d/default.conf"
 ENV="/etc/nginx/.env"
 
