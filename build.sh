@@ -14,5 +14,10 @@ if [ -z ${GROUP_ID+x} ]; then
 	GROUP_ID=$(id -g)
 fi
 
-
-docker-compose build --build-arg UID=$USER_ID --build-arg GID=$GROUP_ID
+read -p "Use Docker cache? [Y/y]? " -n 1 -r
+echo # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]; then 
+	docker-compose build --pull --build-arg UID=$USER_ID --build-arg GID=$GROUP_ID $@
+else 
+	docker-compose build --pull --build-arg UID=$USER_ID --build-arg GID=$GROUP_ID --no-cache $@
+fi

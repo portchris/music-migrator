@@ -4,12 +4,6 @@ FROM launcher.gcr.io/google/debian9:latest
 ARG UID=${USER_ID}
 ARG GID=${GROUP_ID}
 
-# Configure build
-ENV DEBIAN_FRONTEND noninteractive
-RUN rm /etc/localtime && \
-    ln -s /usr/share/zoneinfo/Europe/London /etc/localtime && \
-    dpkg-reconfigure -f noninteractive tzdata
-
 # Add the www user
 RUN groupadd -g ${GID} www && \
     useradd -u ${UID} -g ${GID} -s /bin/bash www
@@ -33,6 +27,7 @@ RUN apt-get update && \
         unzip \
         wget \
 		vim \
+        tzdata \
 		procps \
 		cron \ 
         build-essential \
@@ -44,12 +39,19 @@ RUN apt-get update && \
         libreadline-dev \
         libffi-dev
 
+# Configure build
+ENV DEBIAN_FRONTEND noninteractive
+RUN rm /etc/localtime && \
+    ln -s /usr/share/zoneinfo/Europe/London /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata
+
 # Install Python v3.8
 RUN curl -O https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tar.xz && \
     tar -xf Python-3.8.2.tar.xz && \
     cd Python-3.8.2 && \
     ./configure --enable-optimizations && \
-    make -j 4 && \
+    # Make for 2 cores (portchris server)
+    make -j 2 && \ 
     make altinstall && \
     python3.8 --version && \
     apt update -y && \

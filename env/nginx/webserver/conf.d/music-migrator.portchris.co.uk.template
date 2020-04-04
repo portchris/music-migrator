@@ -1,19 +1,29 @@
+upstream musicmigrator {
+	server 127.0.0.1:8000;
+}
+
 server {
 
-    listen 8082;
-    listen [::]:8082;
-    
+	listen 8082;
+	listen [::]:8082;
+
 	server_name music-migrator.portchris.co.uk;
 
 	set $MAGE_ROOT /home/www/src;
 	set $code default;
-	
+
 	root $MAGE_ROOT;
 	index index.js;
 
-	include /etc/nginx/defaults/nodejs.conf;
+	include /etc/nginx/defaults/python3.conf;
 
 	location / {
-		try_files $uri $uri/ /index.js$is_args$args;
+		# try_files $uri $uri/ /index.js$is_args$args;
+		proxy_pass http://musicmigrator;
+		proxy_redirect off;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Host $server_name;
 	}
 }
