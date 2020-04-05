@@ -1,3 +1,6 @@
+# Python GUnicorn WSGI
+music_migrator_env
+
 # Logs
 logs
 *.log

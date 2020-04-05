@@ -92,4 +92,6 @@ ADD ./config/index-before.js /home/www/index-before.js
 ADD ./scripts /scripts
 RUN chmod +x -R /scripts
 
+# CMD [ "/scripts/start.sh", "" ]
+
 EXPOSE 3000 8000

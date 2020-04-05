@@ -28,7 +28,7 @@ services:
   mmpostgres:
     build: ./env/postgres
     container_name: mmpostgres
-    env_file: env/postgres/.env
+    env_file: env/app/.env
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
       - ./data/postgres:/docker-entrypoint-initdb.d

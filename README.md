@@ -3,6 +3,16 @@ Transfer playlists between Spotify & Google Play Music with ease!
 
 ## Development Guide
 
+### Environment
+
+#### Python 
+The following environment variables are minimum but others are available at: `https://docs.djangoproject.com/en/3.0/ref/settings/` 
+```
+
+```
+
+#### Node.Js NPM
+
 Start the development server using: 
 
 ```
@@ -11,7 +21,6 @@ npm run dev
 
 This will load Next.Js default development server which will have access to built-in Webpack modules such as BrowserSync.
 
-## Deployment Guide
 
 When ready to package up the app, run:
 
