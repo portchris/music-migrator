@@ -24,8 +24,8 @@ RUN addgroup  -g ${GID} -S www && \
 
 # Configure build
 # ENV DEBIAN_FRONTEND noninteractive
-RUN rm /etc/localtime && \
-    cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
+RUN rm -f /etc/localtime || true 
+RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
     date
 
 # Install nginx
