@@ -9,4 +9,4 @@ else
 	exit
 fi
 
-docker-compose exec mmpostgres psql --username=$SQL_PASSWORD --password=$SQL_PASSWORD --dbname=$POSTGRES_DATABASE
+docker-compose exec mmpostgres psql --username=$POSTGRES_PASSWORD --dbname=$POSTGRES_DATABASE

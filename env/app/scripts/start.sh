@@ -23,4 +23,6 @@ alias python=python3
 virtualenv $WEBROOT/api/music_migrator_env
 chown -R $USER_ID:$GROUP_ID $WEBROOT/api/music_migrator_env
 source $WEBROOT/api/music_migrator_env/bin/activate
-gunicorn --name music_migrator --workers=5 -b 0.0.0.0:8000 $WEBROOT/api/wsgi.py
+pip install -r /var/env/app/requirements.txt
+# gunicorn --name music_migrator --workers=5 -b 0.0.0.0:8000 $WEBROOT/api/music_migrator.wsgi.application
+
