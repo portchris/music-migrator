@@ -2,6 +2,12 @@
 
 WEBROOT="/home/www/music-migrator/src"
 
+if [ -f /var/env/app/.env ]; then
+	source /var/env/app/.env
+else 
+	echo "Error: no /var/env/app/.env found!"
+fi
+
 # NPM setup
 if [ ! -d $WEBROOT/app/.npm ]; then
 	mkdir -p $WEBROOT/app/.npm
@@ -24,5 +30,5 @@ virtualenv $WEBROOT/api/music_migrator_env
 chown -R $USER_ID:$GROUP_ID $WEBROOT/api/music_migrator_env
 source $WEBROOT/api/music_migrator_env/bin/activate
 pip install -r /var/env/app/requirements.txt
-# gunicorn --name music_migrator --workers=5 -b 0.0.0.0:8000 $WEBROOT/api/music_migrator.wsgi.application
+gunicorn --name music_migrator --workers=5 --bind $DJANGO_HOST:$DJANGO_PORT music_migrator.wsgi:application
 

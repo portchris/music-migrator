@@ -15,3 +15,4 @@ if [ -z ${GROUP_ID+x} ]; then
 fi
 
 docker-compose up -d --remove-orphans
+# docker-compose exec mmapp $WEBROOT/api/manage.py runserver $DJANGO_HOST:$DJANGO_PORT

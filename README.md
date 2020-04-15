@@ -9,8 +9,11 @@ Transfer playlists between Spotify & Google Play Music with ease!
 The following environment variables are minimum but others are available at: `https://docs.djangoproject.com/en/3.0/ref/settings/` 
 ```
 # Python settings
+PYTHONPATH=/home/www/music-migrator/src/api/music_migrator
 DEBUG=1
-DJANGO_ALLOWED_HOSTS="localhost 127.0.0.1 0.0.0.0 [::1]"
+DJANGO_ALLOWED_HOSTS="music-migrator.fm localhost 127.0.0.1 0.0.0.0 [::1]"
+DJANGO_HOST=0.0.0.0
+DJANGO_PORT=8000
 SECRET_KEY=<MY_SECRET_KEY>
 WEBROOT=/home/www/music-migrator/src
 USER_ID=1000
@@ -21,7 +24,7 @@ SQL_ENGINE=django.db.backends.postgresql
 POSTGRES_DATABASE=musicmigrator
 POSTGRES_USER=musicmigrator
 POSTGRES_PASSWORD=musicmigrator
-POSTGRES_HOST=postgres
+POSTGRES_HOST=mmpostgres
 POSTGRES_PORT=5432
 ```
 
