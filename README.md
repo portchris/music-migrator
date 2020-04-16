@@ -11,7 +11,7 @@ The following environment variables are minimum but others are available at: `ht
 # Python settings
 PYTHONPATH=/home/www/music-migrator/src/api/music_migrator
 DEBUG=1
-DJANGO_ALLOWED_HOSTS="music-migrator.fm localhost 127.0.0.1 0.0.0.0 [::1]"
+DJANGO_ALLOWED_HOSTS="mmapp:8000 music-migrator.fm localhost 127.0.0.1 0.0.0.0 [::1]"
 DJANGO_HOST=0.0.0.0
 DJANGO_PORT=8000
 SECRET_KEY=<MY_SECRET_KEY>
@@ -32,12 +32,14 @@ POSTGRES_PORT=5432
 ```
 WEBROOT=/home/www/music-migrator/src
 TEMPLATE=music-migrator.portchris.co.uk
-VIRTUAL_ROOT=/home/www/music-migrator
-VIRTUAL_HOST=music-migrator.portchris.co.uk
-VIRTUAL_PORT=8081
+VIRTUAL_ROOT=/home/www/music-migrator/src
+VIRTUAL_HOST=music-migrator.portchris.co.uk,api.music-migrator.portchris.co.uk
+VIRTUAL_PORT=8082
+VIRTUAL_PROTO=https # Live only
 LETSENCRYPT_EMAIL=<MY_EMAIL>
-LETSENCRYPT_HOST=music-migrator.portchris.co.uk
+LETSENCRYPT_HOST=music-migrator.portchris.co.uk,api.music-migrator.portchris.co.uk
 LETSENCRYPT_TEST=true
+ENABLE_IPV6=true
 USER_ID=1000
 GROUP_ID=1000
 ```
