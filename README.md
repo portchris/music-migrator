@@ -44,6 +44,12 @@ USER_ID=1000
 GROUP_ID=1000
 ```
 
+#### Postgres
+To start the basic migration and install all necessary tables run from WEBROOT in shell:
+```
+python manage.py migrate
+```
+
 #### Node.Js NPM
 
 Start the development server using: 
