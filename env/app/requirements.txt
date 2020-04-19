@@ -2,3 +2,4 @@ Django==2.2.11
 psycopg2-binary==2.8.4
 virtualenv==20.0.15
 gunicorn==20.0.4
+gmusicapi==13.0.0
