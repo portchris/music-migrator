@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
+from music_migrator.googleplaymusic import views as gmusic 
+from music_migrator.homepage import views as home
 
-urlpatterns = [
+urlpatterns = [    
+    url(r'^$', home.index, name='Music Migrator'),
+    url(r'^googleplaymusic$', gmusic.index, name='Google Play Music'),
     path('admin/', admin.site.urls),
 ]

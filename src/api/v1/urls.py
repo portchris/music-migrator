@@ -17,5 +17,6 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
+    url(r'^$', include('music_migrator.urls')),
     path('admin/', admin.site.urls),
 ]
