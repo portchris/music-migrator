@@ -87,6 +87,7 @@ adminer.php
 .idea/
 *.sublime-workspace
 *.iws
+.vscode/
 nbproject/
 data/
 env/nginx/webserver/conf.d/default.conf
