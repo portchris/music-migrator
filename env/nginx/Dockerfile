@@ -57,7 +57,7 @@ ADD ./certs /etc/nginx/certs
 #	apt-get update && \
 #	apt-get install -y python-certbot-nginx -t stretch-backports
 
-EXPOSE 80 443 8082
+EXPOSE 80 443 8083
 
 # Execute Nginx config using environment variables to start all services
 CMD ["bash", "/scripts/start.sh"]

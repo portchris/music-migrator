@@ -1,7 +1,7 @@
 server {
 
-	listen 8082;
-	listen [::]:8082;
+	listen 8083;
+	listen [::]:8083;
 
 	server_name api.music-migrator.portchris.co.uk;
 
@@ -12,14 +12,14 @@ server {
 
 	location / {
 		# try_files $uri $uri/ /index.js$is_args$args;
-		proxy_pass http://mmapp:8000;
+		proxy_pass http://mmapp:5000;
 	}
 }
 
 server {
 
-	listen 8082;
-	listen [::]:8082;
+	listen 8083;
+	listen [::]:8083;
 
 	server_name music-migrator.portchris.co.uk;
 
