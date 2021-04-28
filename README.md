@@ -33,6 +33,12 @@ POSTGRES_HOST=mmpostgres
 POSTGRES_PORT=5432
 ```
 
+##### Starting the environment
+To server the Flask webserver
+```bash
+flask run --host=0.0.0.0
+```
+
 #### Nginx
 ```
 WEBROOT=/home/www/music-migrator/src
